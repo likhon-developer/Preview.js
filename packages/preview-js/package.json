@@ -1,0 +1,45 @@
+{
+  "name": "@likhonsheikhofficial/preview-js",
+  "version": "1.0.1",
+  "description": "An advanced in-browser sandbox for AI agents and live coding. Run any Node.js app in any browser, powered by WebContainers.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react,uuid --sourcemap",
+    "dev": "npm run build -- --watch",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "sandbox",
+    "webcontainer",
+    "live-coding",
+    "ai-agent",
+    "preview",
+    "react",
+    "nodejs",
+    "codesandbox"
+  ],
+  "author": "likhon-developer",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@webcontainer/api": "^1.1.9",
+    "dexie": "^4.0.1",
+    "dexie-react-hooks": "^1.1.7",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "@types/uuid": "^9.0.8"
+  }
+}
