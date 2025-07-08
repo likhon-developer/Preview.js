@@ -1,0 +1,36 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # or master, depending on your default branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a recent Node.js version
+
+      - name: Install dependencies
+        run: npm install # Or pnpm install if you use pnpm
+
+      - name: Build package (if needed for docs)
+        run: npm run build # This might not be strictly necessary for just README, but good practice
+
+      - name: Copy README to docs directory
+        run: |
+          mkdir -p docs
+          cp packages/preview-js/README.md docs/index.md # Rename to index.md for GitHub Pages
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          cname: docs.example.com # Optional: if you have a custom domain
